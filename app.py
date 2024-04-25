@@ -22,8 +22,8 @@ if submit_button3 and link and sell and ins:
     url = "https://linkedin-api8.p.rapidapi.com/"
     querystring = {"username":link}
     headers = {
-        "X-RapidAPI-Key": "9feb798c8cmsh9140c0995443c0bp1e18ebjsnfb8efebdfd04",
-        "X-RapidAPI-Host": "linkedin-api8.p.rapidapi.com"
+	"X-RapidAPI-Key": "dacc93bfecmsh336023176beccabp1fa929jsnbf31d1fec909",
+	"X-RapidAPI-Host": "linkedin-api8.p.rapidapi.com"
     }
 
     response = requests.get(url, headers=headers, params=querystring)
@@ -33,14 +33,7 @@ if submit_button3 and link and sell and ins:
 
     url2 = "https://linkedin-api8.p.rapidapi.com/get-profile-posts"
 
-    querystring2 = {"username":link}
-
-    headers2 = {
-        "X-RapidAPI-Key": "9feb798c8cmsh9140c0995443c0bp1e18ebjsnfb8efebdfd04",
-        "X-RapidAPI-Host": "linkedin-api8.p.rapidapi.com"
-    }
-
-    response_post = requests.get(url2, headers=headers2, params=querystring2)
+    response_post = requests.get(url2, headers=headers, params=querystring)
 
     link_post = json.dumps(response_post.json())
     link_post = str(link_post)
