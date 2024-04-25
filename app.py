@@ -65,6 +65,7 @@ if submit_button3 and link and sell and ins:
     template= """LinkedIn scrap: {linked}\n\n
     You are an AI assistant that summarizes work history from LinkedIn profiles.
     Summarize this person's work history from their LinkedIn profile. List each company starting with the most recent and the roles they have had at those companies. After that write a paragraph summarizing their career progression/trajectory and call out anything that stands out like a major career change.
+    Output should be under 2 headings: Current job and Previous experiences.
     """
     prompt = ChatPromptTemplate.from_template(template)
     chain = LLMChain(llm=llm, prompt=prompt)
@@ -120,6 +121,7 @@ if submit_button3 and link and sell and ins:
     template5 = """LinkedIn scrap: {linked}\n\n
     You are an AI assistant that infers job responsibilities from LinkedIn profiles.
     Given this person's role and company, explain 5-10 key responsibilities they likely have in their job. Respond with this in a bulleted list.
+    Output should be under 2 headings: Current job responsibilities and Past job responsibilities.
     """
     prompt5 = ChatPromptTemplate.from_template(template5)
     chain5 = LLMChain(llm=llm, prompt=prompt5)
@@ -183,8 +185,8 @@ if submit_button3 and link and sell and ins:
     \nUse Cases of product to be sold to LinkedIn user: {use}
 
     You are an AI assistant that obeys instructions. 
-    Product to be sold: {prod}
-    You will be given a task or a set of instructions. Use the above information to execute it.
+    Product to be sold to the LinkedIn user: {prod}
+    You will be given a task or a set of instructions to sell the product to the LinkedIn user. Use the above information to execute it. Write subjective to the LinkedIn user's current job, while taking some essense from his past experiences.
     \nTask/Instructions: {ins}
     """
     prompt8 = ChatPromptTemplate.from_template(template8)
