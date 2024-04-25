@@ -14,13 +14,15 @@ st.set_page_config(
 st.title("Lead/Contact Enrichment from LinkedIn Profile ✨")
 llm  = ChatOpenAI(model="gpt-3.5-turbo-0125", temperature=0.3)
 with st.form(key='link_form'):
-        link = st.text_input("Add LinkedIn username", placeholder="Type username", key='inputLink')
-        sell = st.text_input("Add product to be sold", placeholder="Type product", key='inputPro')
-        ins = st.text_input("Add instructions", placeholder="Type instructions", key='inputInst')
-        submit_button3 = st.form_submit_button(label='Enter ➤')
+    link = st.text_input("Add LinkedIn username", placeholder="Type url", key='inputLink')
+    sell = st.text_input("Add product to be sold", placeholder="Type product", key='inputPro')
+    ins = st.text_input("Add instructions", placeholder="Type instructions", key='inputInst')
+    submit_button3 = st.form_submit_button(label='Enter ➤')
 if submit_button3 and link and sell and ins:
+    link_name = link.split('/')
+    link_name = link_name[-2]
     url = "https://linkedin-api8.p.rapidapi.com/"
-    querystring = {"username":link}
+    querystring = {"username":link_name}
     headers = {
 	"X-RapidAPI-Key": "dacc93bfecmsh336023176beccabp1fa929jsnbf31d1fec909",
 	"X-RapidAPI-Host": "linkedin-api8.p.rapidapi.com"
