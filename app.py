@@ -14,28 +14,36 @@ st.set_page_config(
 st.title("Lead/Contact Enrichment from LinkedIn Profile ✨")
 llm  = ChatOpenAI(model="gpt-3.5-turbo-0125", temperature=0.3)
 with st.form(key='link_form'):
-    link = st.text_input("Add LinkedIn username", placeholder="Type url", key='inputLink')
+    link = st.text_input("Add LinkedIn username url", placeholder="Type url", key='inputLink')
     sell = st.text_input("Add product to be sold", placeholder="Type product", key='inputPro')
     ins = st.text_input("Add instructions", placeholder="Type instructions", key='inputInst')
     submit_button3 = st.form_submit_button(label='Enter ➤')
 if submit_button3 and link and sell and ins:
-    link_name = link.split('/')
-    link_name = link_name[-2]
-    url = "https://linkedin-api8.p.rapidapi.com/"
-    querystring = {"username":link_name}
+  
+    url = "https://linkedin-data-scraper.p.rapidapi.com/person_deep"
+
+    payload = { "link": link}
     headers = {
-	"X-RapidAPI-Key": "dacc93bfecmsh336023176beccabp1fa929jsnbf31d1fec909",
-	"X-RapidAPI-Host": "linkedin-api8.p.rapidapi.com"
+        "content-type": "application/json",
+        "X-RapidAPI-Key": "dacc93bfecmsh336023176beccabp1fa929jsnbf31d1fec909",
+        "X-RapidAPI-Host": "linkedin-data-scraper.p.rapidapi.com"
     }
 
-    response = requests.get(url, headers=headers, params=querystring)
+    response = requests.post(url, json=payload, headers=headers)
 
     link_dict = json.dumps(response.json())
     link_dict = str(link_dict)
 
-    url2 = "https://linkedin-api8.p.rapidapi.com/get-profile-posts"
+    url2 = "https://linkedin-data-scraper.p.rapidapi.com/profile_updates"
 
-    response_post = requests.get(url2, headers=headers, params=querystring)
+    payload2 = {
+        "profile_url": link,
+        "posts": 1,
+        "comments": 1,
+        "reposts": 1
+    }
+
+    response_post = requests.post(url2, json=payload2, headers=headers)
 
     link_post = json.dumps(response_post.json())
     link_post = str(link_post)
