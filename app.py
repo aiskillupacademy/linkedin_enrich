@@ -25,8 +25,8 @@ if submit_button3 and link and sell and ins:
     payload = { "link": link}
     headers = {
         "content-type": "application/json",
-        "X-RapidAPI-Key": "dacc93bfecmsh336023176beccabp1fa929jsnbf31d1fec909",
-        "X-RapidAPI-Host": "linkedin-data-scraper.p.rapidapi.com"
+        "X-RapidAPI-Key": "c20512902emshbd56363eebfc263p162767jsn9a248b829174",
+	    "X-RapidAPI-Host": "linkedin-data-scraper.p.rapidapi.com"
     }
 
     response = requests.post(url, json=payload, headers=headers)
